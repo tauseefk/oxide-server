@@ -17,8 +17,6 @@ pub mod oxide {
     tonic::include_proto!("oxide");
 }
 
-mod data;
-
 #[derive(Debug, Default)]
 pub struct OxideService {
     texts: Arc<Vec<Text>>,
@@ -160,7 +158,7 @@ impl ChatService for OxideService {
                 user_already_exists = has_user;
             }
             Err(_) => {
-                println!("Error fetching document");
+                println!("Error fetching user");
             }
         }
 
@@ -210,8 +208,8 @@ impl ChatService for OxideService {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let addr = "0.0.0.0:3001".parse()?;
 
-    let texts = Arc::new(data::load_texts());
-    let chats = Arc::new(data::load_chats());
+    let texts = Arc::new(vec![]);
+    let chats = Arc::new(vec![]);
 
     let fetch_texts_for_chat = OxideService { texts, chats };
 

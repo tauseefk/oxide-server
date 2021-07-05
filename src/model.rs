@@ -25,7 +25,7 @@ pub mod oxide_db {
     pub chat_id: String,
   }
 
-  static CLIENT_URI: &str = "mongodb://oxide-data:27017";
+  static CLIENT_URI: &str = "mongodb://localhost:27017";
   const PASS: &str = "password";
 
   pub async fn get_db_client() -> Result<mongodb::Client, Box<dyn std::error::Error>> {
